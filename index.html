@@ -37,6 +37,7 @@
 				console.log("init!");
 				webgazer.setGazeListener(function(data, elapsedTime) {
 					if (data == null) {
+						console.log("data is null");
 						return;
 					}
 					var xprediction = data.x; //these x coordinates are relative to the viewport
