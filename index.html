@@ -5,12 +5,12 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 		<!-- Name of the app -->
-		<title>Camera App</title>
+		<title>Webcam Tracker Test</title>
 
 		<!-- Link to main style sheet -->
 		<link rel="stylesheet" href="style.css"> 
 	</head>
-	<body>
+	<body onload="init()">
 
 		<!-- Camera -->
 		<main id="camera">
@@ -29,8 +29,22 @@
 
 		</main>
 
-		<!-- Reference to your JavaScript file -->
+		<script src="webgazer.js"></script>
 		<script src="app.js"></script> 
-		<script src="webgazer.js"></script> 
+		<script type="text/javascript">
+		
+			function init() {
+				console.log("init!");
+				webgazer.setGazeListener(function(data, elapsedTime) {
+					if (data == null) {
+						return;
+					}
+					var xprediction = data.x; //these x coordinates are relative to the viewport
+					var yprediction = data.y; //these y coordinates are relative to the viewport
+					console.log(elapsedTime); //elapsed time is based on time since begin was called
+				}).begin();
+			}
+			
+		</script>
 	</body>
 </html>
